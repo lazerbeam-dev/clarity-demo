@@ -10,8 +10,23 @@ defineProps({
 <template>
   <div class="greetings">
     <h1 class="primaryColour">{{ msg }}</h1>
+    <button @click="this.Test()"></button>
   </div>
 </template>
+<script>
+export default {
+  methods: {
+    Test(){
+      console.log("we're rolling")
+    }
+  }
+}
+</script>
+
+<style>
+
+</style>
+
 
 <style scoped>
 h1 {
