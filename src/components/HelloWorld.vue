@@ -17,7 +17,9 @@ defineProps({
 export default {
   methods: {
     Test(){
+
       console.log("we're rolling")
+      
     }
   }
 }
