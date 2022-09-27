@@ -20,5 +20,5 @@
 
 (define-public (addBalance (staker principal)(amount int))
     (ok (stx-(stx-transfer? amount staker (var-get contract-owner)))
-)
+))
 
