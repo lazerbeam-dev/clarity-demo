@@ -20,6 +20,7 @@ export default {
     Test(){
 
       console.log("we're rolling")
+      console.log("and we chillin")
       
     }
   }
