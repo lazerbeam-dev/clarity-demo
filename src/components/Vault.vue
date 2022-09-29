@@ -15,6 +15,7 @@ defineProps({
 </template>
 <script>
 export default {
+  name: "Vault",
   methods: {
     Test(){
 

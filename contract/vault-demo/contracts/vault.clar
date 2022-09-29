@@ -3,22 +3,19 @@
 ;; you can stack your stacks in this cool demo stacking program
 ;; but don't
 
-;; data maps and vars
-(define-map stakerAmounts
-    {balance int 0}
-    {user principal}
-)
+;; Constants
+;; Owner
+(define-constant contract-owner tx-sender)
 
-;; private functions
-;;
+;; Errors
+(define-constant err-nothing-to-withdraw (err u100))
+(define-constant err-transaction-error (err u101))
+
+;; ;; data maps and vars
+(define-map stakerAmounts principal int)
 
 ;; public functions
 ;;
-(define-read-only (get-contract-owner)
-    (ok (var-get contract-owner))
+(define-public (add-balance (staker principal) (amount int)) 
+        (ok (print "hello"))
 )
-
-(define-public (addBalance (staker principal)(amount int))
-    (ok (stx-(stx-transfer? amount staker (var-get contract-owner)))
-))
-

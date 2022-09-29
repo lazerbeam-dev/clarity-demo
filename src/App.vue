@@ -1,11 +1,11 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue';
+import Vault from './components/Vault.vue';
 
 </script>
 
 <template>
   <main>
-    <HelloWorld msg="Stack stacks"/>
+    <Vault msg="Stack stacks"/>
   </main>
 </template>
 
