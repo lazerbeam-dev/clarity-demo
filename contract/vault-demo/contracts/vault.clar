@@ -4,8 +4,6 @@
 ;; Constants
 ;; Owner
 (define-data-var contract-owner principal tx-sender)
-(define-constant contract-address "ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.vault")
-
 ;; Errors
 (define-constant err-nothing-to-withdraw (err u100))
 (define-constant err-transaction-error (err u101))
@@ -16,9 +14,15 @@
 
 ;; public functions
 ;;
-(define-public (deposit (staker principal) (amount uint)) 
+(define-public (deposit (amount uint))
+
     (stx-transfer? amount tx-sender .vault)
 )
+
+;; (define-public (withdraw (amount uint))
+;; (asserts! amount (err thrown))
+;;     (stx-transfer? amount .vault tx-sender)
+;; )
 
 (define-public (transfer-contract (new-owner principal))
     (begin

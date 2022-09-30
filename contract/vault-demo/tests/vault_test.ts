@@ -46,7 +46,7 @@ import {
 
       const block = chain.mineBlock([
         // can deposit
-        Tx.contractCall('vault', 'deposit', [types.int(1000)], wallet_1)
+        Tx.contractCall('vault', 'deposit', [types.uint(1000)], wallet_1)
       ])
 
       block.receipts[0].result.expectOk()
