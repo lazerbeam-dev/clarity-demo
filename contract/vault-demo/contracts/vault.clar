@@ -1,11 +1,10 @@
-
 ;; vault
 ;; you can stack your stacks in this cool demo stacking program
-;; but don't
 
 ;; Constants
 ;; Owner
 (define-data-var contract-owner principal tx-sender)
+(define-constant contract-address "ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.vault")
 
 ;; Errors
 (define-constant err-nothing-to-withdraw (err u100))
@@ -17,16 +16,8 @@
 
 ;; public functions
 ;;
-(define-public (add-balance (staker principal) (amount int)) 
-        (ok (print "hello"))
-)
-
-(define-public (transfer-contract-ownership (new-owner principal))
-    (if (is-eq (var-get contract-owner) tx-sender)
-        ;; #[allow(unchecked_data)]
-        (ok (var-set contract-owner new-owner))
-        (err (print "ownly the owner can transfer ownership"))
-    )
+(define-public (deposit (staker principal) (amount uint)) 
+    (stx-transfer? amount tx-sender .vault)
 )
 
 (define-public (transfer-contract (new-owner principal))
@@ -37,6 +28,3 @@
         (ok (var-set contract-owner new-owner))
     )
 )
-        ;; 
-        ;; (ok (var-set contract-owner new-owner))
-        ;; (err (print "ownly the owner can transfer ownership"))
