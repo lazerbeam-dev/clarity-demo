@@ -61,14 +61,20 @@ import {
       const wallet_2 = accounts.get('wallet_2')?.address ?? ""
 
       const block = chain.mineBlock([
-        // can deposit
+        // expect can deposit
         Tx.contractCall('vault', 'deposit', [types.uint(10000)], wallet_1),
+        // expect same user can withdraw
         Tx.contractCall('vault', 'withdraw', [types.uint(1000)], wallet_1),
+        // expect third party cannot withdraw
         Tx.contractCall('vault', 'withdraw', [types.uint(1000)], wallet_2)
       ])
 
       console.log(block.receipts)
 
       block.receipts[0].result.expectOk()
+      block.receipts[1].result.expectOk()
+      block.receipts[2].result.expectErr()
+
+
     },
   })
