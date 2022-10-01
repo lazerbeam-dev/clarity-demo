@@ -52,3 +52,23 @@ import {
       block.receipts[0].result.expectOk()
     },
   })
+
+  Clarinet.test({
+    name: 'Ensure that correct users can withdraw stacks',
+    fn(chain: Chain, accounts: Map<string, Account>) {
+
+      const wallet_1 = accounts.get('wallet_1')?.address ?? ""
+      const wallet_2 = accounts.get('wallet_2')?.address ?? ""
+
+      const block = chain.mineBlock([
+        // can deposit
+        Tx.contractCall('vault', 'deposit', [types.uint(10000)], wallet_1),
+        Tx.contractCall('vault', 'withdraw', [types.uint(1000)], wallet_1),
+        Tx.contractCall('vault', 'withdraw', [types.uint(1000)], wallet_2)
+      ])
+
+      console.log(block.receipts)
+
+      block.receipts[0].result.expectOk()
+    },
+  })

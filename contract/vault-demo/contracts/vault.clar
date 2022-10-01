@@ -5,24 +5,41 @@
 ;; Owner
 (define-data-var contract-owner principal tx-sender)
 ;; Errors
-(define-constant err-nothing-to-withdraw (err u100))
+(define-constant err-insufficient-funds (err u100))
 (define-constant err-transaction-error (err u101))
 (define-constant err-not-owner (err u102))
 
 ;; ;; data maps and vars
-(define-map stakerAmounts principal int)
+(define-map deposits principal uint)
+
+;;private functions
+(define-read-only (get-total-deposit (who principal))
+    (default-to u0 (map-get? deposits who))
+)
 
 ;; public functions
 ;;
 (define-public (deposit (amount uint))
-
-    (stx-transfer? amount tx-sender .vault)
+    (begin
+            ;; #[allow(unchecked_data)]
+        (map-set deposits tx-sender (+ (get-total-deposit tx-sender) amount))
+        (stx-transfer? amount tx-sender (as-contract tx-sender))
+    )
 )
+    ;;     (map-get? deposits tx-sender)
+    ;;  (ok map-set deposits tx-sender
+    ;; )
 
-;; (define-public (withdraw (amount uint))
-;; (asserts! amount (err thrown))
-;;     (stx-transfer? amount .vault tx-sender)
-;; )
+(define-public (withdraw (amount uint))
+    (if (> (get-total-deposit tx-sender) amount) 
+        (ok (begin 
+            (map-set deposits tx-sender (- (get-total-deposit tx-sender) amount))
+            (stx-transfer? amount .vault tx-sender) 
+            )
+        )
+        (err err-insufficient-funds)
+    )
+)
 
 (define-public (transfer-contract (new-owner principal))
     (begin
