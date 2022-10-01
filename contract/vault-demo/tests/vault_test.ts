@@ -72,8 +72,8 @@ import {
       console.log(block.receipts)
 
       block.receipts[0].result.expectOk()
-      block.receipts[1].result.expectOk()
-      block.receipts[2].result.expectErr()
+      block.receipts[1].result.expectOk().expectOk()
+      block.receipts[2].result.expectErr().expectErr()
 
 
     },
