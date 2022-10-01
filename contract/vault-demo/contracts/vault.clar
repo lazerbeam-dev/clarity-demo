@@ -31,7 +31,7 @@
     (if (> (get-total-deposit tx-sender) amount) 
         (ok (begin 
             (map-set deposits tx-sender (- (get-total-deposit tx-sender) amount))
-            (stx-transfer? amount (as-contract .vault) (as-contract tx-sender))
+            (let ((recipient tx-sender)) (as-contract (stx-transfer? amount .vault recipient)))
             )
         )
         (err err-insufficient-funds)
