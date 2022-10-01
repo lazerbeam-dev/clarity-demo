@@ -26,15 +26,12 @@
         (stx-transfer? amount tx-sender (as-contract tx-sender))
     )
 )
-    ;;     (map-get? deposits tx-sender)
-    ;;  (ok map-set deposits tx-sender
-    ;; )
 
 (define-public (withdraw (amount uint))
     (if (> (get-total-deposit tx-sender) amount) 
         (ok (begin 
             (map-set deposits tx-sender (- (get-total-deposit tx-sender) amount))
-            (stx-transfer? amount .vault tx-sender) 
+            (stx-transfer? amount (as-contract .vault) (as-contract tx-sender))
             )
         )
         (err err-insufficient-funds)
