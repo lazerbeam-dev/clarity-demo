@@ -1,0 +1,21 @@
+{
+  "name": "vault-frontend",
+  "version": "0.0.0",
+  "scripts": {
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 5050"
+  },
+  "dependencies": {
+    "@stacks/common": "^4.3.5",
+    "@stacks/connect": "^6.10.1",
+    "@stacks/network": "^4.3.5",
+    "@stacks/transactions": "^4.3.5",
+    "vue": "^3.2.33"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^2.3.1",
+    "regenerator-runtime": "^0.13.9",
+    "vite": "^2.9.5"
+  }
+}
