@@ -42,11 +42,12 @@ div {
 }
 
 button {
-  margin: 8px;
+  margin: auto;
   background-color: #222;
   border: 2px solid #777;
   border-radius: 28px;
   font-size: 18px;
   padding: 16px 24px;
+  display: flex;
 }
 </style>

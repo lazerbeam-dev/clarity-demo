@@ -10,7 +10,7 @@ import StacksContractVote from './components/StacksContractVote.vue';
       <HelloWorld msg="Stack Stacks with Stacks.js" />
       <div class="flex-center">
         <!-- StacksConnectWallet file: `./src/components/StacksConnectWallet.vue` -->
-        <StacksConnectWallet />
+        <StacksConnectWallet/>
 
         <!-- StacksContractVote file: `./src/components/StacksContractVote.vue` -->
         <StacksContractVote />
@@ -26,20 +26,10 @@ import StacksContractVote from './components/StacksContractVote.vue';
 @import './assets/base.css';
 
 #app {
-  max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
 
   font-weight: normal;
-}
-
-.flex-center {
-  width: 100%;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
 header {
@@ -56,31 +46,6 @@ a,
 @media (hover: hover) {
   a:hover {
     background-color: hsla(160, 100%, 37%, 0.2);
-  }
-}
-
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
-
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
   }
 }
 </style>
