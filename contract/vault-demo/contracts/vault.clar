@@ -28,7 +28,7 @@
 )
 
 (define-public (withdraw (amount uint))
-    (if (> (get-total-deposit tx-sender) amount) 
+    (if (>= (get-total-deposit tx-sender) amount) 
         (ok (begin 
             (map-set deposits tx-sender (- (get-total-deposit tx-sender) amount))
             (let ((recipient tx-sender)) (as-contract (stx-transfer? amount .vault recipient)))
